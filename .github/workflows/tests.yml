@@ -1,0 +1,40 @@
+name: PHP UnitTets
+
+on: ['push', 'pull_request']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [7.4, 8.0, 8.1]
+
+    name: Tests PHP ${{ matrix.php }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Cache Composer packages
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - uses: actions/cache@v3
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    - name: Install dependencies
+      if: steps.composer-cache.outputs.cache-hit != 'true'
+      run: composer install --dev --prefer-dist --no-progress --no-suggest
+
+    - name: reload autoload
+      run: composer dump-autoload
+
+    - name: Run test suite
+      run: composer test:unit tests/
