@@ -43,7 +43,9 @@ fakeNIK()
 
 ## Todo
 - [ ] add more tests
-- [ ] support generating 'kabupaten/kota' levels.
-- [ ] support generating 'kelurahan' levels.
+- [X] support generating 'kabupaten/kota' levels.
+- [X] support generating 'kelurahan' levels.
+- [ ] type hityng 'kabupaten/kota'.
+- [ ] type hityng 'kelurahan'.
 
 `fake-nik` is an open-sourced software licensed under the **[MIT license](https://opensource.org/licenses/MIT)**.
