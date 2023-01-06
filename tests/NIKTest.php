@@ -32,7 +32,7 @@ final class NIKTest extends TestCase
     /** @test */
     public function itCanGenerateNik()
     {
-        $nik = $this->nik->randALl()->generate();
+        $nik = $this->nik->randAll()->generate();
 
         $this->assertEquals(16, \strlen($nik));
     }
@@ -43,7 +43,7 @@ final class NIKTest extends TestCase
         $niks = [];
         foreach (range(1, 100) as $item) {
             $niks[] = $this->nik
-                ->randALl()
+                ->randAll()
                 ->profinsi(Profinsi::JAWA_TENGAH)
                 ->generate();
         }
@@ -56,7 +56,7 @@ final class NIKTest extends TestCase
     /** @test */
     public function itCanGenerateNIKTahun()
     {
-        $nik = $this->nik->randALl()->tahun(2022)->generate();
+        $nik = $this->nik->randAll()->tahun(2022)->generate();
 
         $this->assertContainString($nik, '22');
     }

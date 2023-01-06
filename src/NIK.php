@@ -91,7 +91,7 @@ final class NIK
         return rand(1, 29);
     }
 
-    public function randALl(): self
+    public function randAll(): self
     {
         $rand_id              = array_rand(Profinsi::IDs());
         $this->profinsi       = Profinsi::IDs()[$rand_id];
