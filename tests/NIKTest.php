@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Faker\Consts\JenisKelamin;
 use Faker\Consts\Profinsi;
 use Faker\NIK;
 use PHPUnit\Framework\Assert;
@@ -59,5 +60,12 @@ final class NIKTest extends TestCase
         $nik = $this->nik->randAll()->tahun(2022)->generate();
 
         $this->assertContainString($nik, '22');
+    }
+
+    /** @test */
+    public function itCanGenerateNIKUsingDate()
+    {
+        $nik = $this->nik->randAll()->jenisKelamin(JenisKelamin::LAKI)->date(new \DateTime('12-12-2015'))->generate();
+        $this->assertContainString($nik, '121215');
     }
 }

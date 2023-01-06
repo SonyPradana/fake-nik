@@ -145,4 +145,13 @@ final class NIK
 
         return $this;
     }
+
+    public function date(\DateTimeInterface $dateTime): self
+    {
+        $this->tahun   = (int) $dateTime->format('Y');
+        $this->bulan   = (int) $dateTime->format('m');
+        $this->tanggal = (int) $dateTime->format('d');
+
+        return $this;
+    }
 }
