@@ -1,9 +1,11 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/sonypradana/fake-nik/main/art/logo.png" alt="fake nik logo">
-    <a href="https://packagist.org/packages/sonypradana/fake-nik"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/sonypradana/fake-nik"></a>
-    <a href="https://github.com/sonypradana/fake-nik/actions"><img alt="Start" src="https://img.shields.io/github/stars/SonyPradana/fake-nik"></a>
-    <a href="https://github.com/SonyPradana/fake-nik/actions/workflows/tests.yml"><img alt="test past" src="https://github.com/SonyPradana/fake-nik/actions/workflows/tests.yml/badge.svg"></a>
-    <a href="https://github.com/SonyPradana/fake-nik/blob/main/LICENSE.md"><img alt="License" src="https://img.shields.io/github/license/SonyPradana/fake-nik"></a>
+    <img src="https://raw.githubusercontent.com/sonypradana/fake-nik/main/art/logo.png" height= 300 alt="fake nik logo">
+    <p align="center">
+        <a href="https://packagist.org/packages/sonypradana/fake-nik"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/sonypradana/fake-nik"></a>
+        <a href="https://github.com/sonypradana/fake-nik/actions"><img alt="Start" src="https://img.shields.io/github/stars/SonyPradana/fake-nik"></a>
+        <a href="https://github.com/SonyPradana/fake-nik/actions/workflows/tests.yml"><img alt="test past" src="https://github.com/SonyPradana/fake-nik/actions/workflows/tests.yml/badge.svg"></a>
+        <a href="https://github.com/SonyPradana/fake-nik/blob/main/LICENSE.md"><img alt="License" src="https://img.shields.io/github/license/SonyPradana/fake-nik"></a>
+    </p>
 </p>
 
 ------
@@ -44,4 +46,4 @@ fakeNIK()
 - [ ] support generating 'kabupaten/kota' levels.
 - [ ] support generating 'kelurahan' levels.
 
-Pest is an open-sourced software licensed under the **[MIT license](https://opensource.org/licenses/MIT)**.
+`fake-nik` is an open-sourced software licensed under the **[MIT license](https://opensource.org/licenses/MIT)**.
