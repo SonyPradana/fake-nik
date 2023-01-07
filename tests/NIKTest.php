@@ -55,6 +55,28 @@ final class NIKTest extends TestCase
     }
 
     /** @test */
+    public function itCanGenerateNIKKabupatenKota()
+    {
+        $nik = $this->nik
+            ->randAll()
+            ->kabupatenKota(Profinsi::JAWA_TENGAH, 24)
+            ->generate();
+
+        $this->assertContainString($nik, '3324');
+    }
+
+    /** @test */
+    public function itCanGenerateNIKKecamatan()
+    {
+        $nik = $this->nik
+            ->randAll()
+            ->kecamatan(Profinsi::JAWA_TENGAH, 24, 12)
+            ->generate();
+
+        $this->assertContainString($nik, '332412');
+    }
+
+    /** @test */
     public function itCanGenerateNIKTahun()
     {
         $nik = $this->nik->randAll()->tahun(2022)->generate();
