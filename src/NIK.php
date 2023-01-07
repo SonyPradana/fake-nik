@@ -107,7 +107,9 @@ final class NIK
 
     private function randKecamatan(): int
     {
-        return (int) array_rand($this->dbs[$this->provinsi][$this->kabupaten_kota]);
+        $rand = array_rand($this->dbs[$this->provinsi][$this->kabupaten_kota]);
+
+        return $this->dbs[$this->provinsi][$this->kabupaten_kota][$rand];
     }
 
     public function randAll(): self
