@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Faker\Consts\JenisKelamin;
-use Faker\Consts\Profinsi;
+use Faker\Consts\Provinsi;
 use Faker\NIK;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
@@ -39,13 +39,13 @@ final class NIKTest extends TestCase
     }
 
     /** @test */
-    public function itCanGenerateNIKProfinsi()
+    public function itCanGenerateNIKProvinsi()
     {
         $niks = [];
         foreach (range(1, 100) as $item) {
             $niks[] = $this->nik
                 ->randAll()
-                ->profinsi(Profinsi::JAWA_TENGAH)
+                ->provinsi(Provinsi::JAWA_TENGAH)
                 ->generate();
         }
 
@@ -59,7 +59,7 @@ final class NIKTest extends TestCase
     {
         $nik = $this->nik
             ->randAll()
-            ->kabupatenKota(Profinsi::JAWA_TENGAH, 24)
+            ->kabupatenKota(Provinsi::JAWA_TENGAH, 24)
             ->generate();
 
         $this->assertContainString($nik, '3324');
@@ -70,7 +70,7 @@ final class NIKTest extends TestCase
     {
         $nik = $this->nik
             ->randAll()
-            ->kecamatan(Profinsi::JAWA_TENGAH, 24, 12)
+            ->kecamatan(Provinsi::JAWA_TENGAH, 24, 12)
             ->generate();
 
         $this->assertContainString($nik, '332412');

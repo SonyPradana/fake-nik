@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Faker\Consts;
 
-final class Profinsi
+final class Provinsi
 {
     public const ACEH                       = 11;
     public const SUMATERA_UTARA             = 12;

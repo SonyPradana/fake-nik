@@ -29,7 +29,7 @@ fakeNIK()->generate();
 ```php
 fakeNIK()
     ->jenisKelamin(JenisKelamin::Laki)
-    ->profinsi(Proffinsi::JAWA_TENGAH)
+    ->provinsi(Provinsi::JAWA_TENGAH)
     ->usia(17)
     ->generate();
 // 3324140501060002 (controll your faker)

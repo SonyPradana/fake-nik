@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Faker;
 
 use Faker\Consts\JenisKelamin;
-use Faker\Consts\Profinsi;
+use Faker\Consts\Provinsi;
 use Faker\Traits\UsiaTrait;
 
 final class NIK
@@ -13,7 +13,7 @@ final class NIK
     use UsiaTrait;
 
     /** @var int */
-    private $profinsi;
+    private $provinsi;
 
     /** @var int */
     private $kabupaten_kota;
@@ -37,21 +37,21 @@ final class NIK
     private $dbs;
 
     public function __construct(
-        int $profinsi,
+        int $provinsi,
         int $kabupaten_kota,
         int $kecamatan,
         int $tanggal,
         int $bulan,
         int $tahun
     ) {
-        $this->profinsi       = $profinsi;
+        $this->provinsi       = $provinsi;
         $this->kabupaten_kota = $kabupaten_kota;
         $this->kecamatan      = $kecamatan;
         $this->tanggal        = $tanggal;
         $this->bulan          = $bulan;
         $this->tahun          = $tahun;
         $this->gender         = JenisKelamin::LAKI;
-        $this->dbs            = Profinsi::IDs();
+        $this->dbs            = Provinsi::IDs();
     }
 
     public function __toString()
@@ -95,24 +95,24 @@ final class NIK
         return rand(1, 29);
     }
 
-    private function randProfinsi(): int
+    private function randProvinsi(): int
     {
         return (int) array_rand($this->dbs);
     }
 
     private function randKabupatenKota(): int
     {
-        return (int) array_rand($this->dbs[$this->profinsi]);
+        return (int) array_rand($this->dbs[$this->provinsi]);
     }
 
     private function randKecamatan(): int
     {
-        return (int) array_rand($this->dbs[$this->profinsi][$this->kabupaten_kota]);
+        return (int) array_rand($this->dbs[$this->provinsi][$this->kabupaten_kota]);
     }
 
     public function randAll(): self
     {
-        $this->profinsi       = $this->randProfinsi();
+        $this->provinsi       = $this->randProvinsi();
         $this->kabupaten_kota = $this->randKabupatenKota();
         $this->kecamatan      = $this->randKecamatan();
         $this->tahun          = rand(1900, (int) date('Y'));
@@ -124,7 +124,7 @@ final class NIK
 
     public function generate(): string
     {
-        $profinsi       = $this->fill($this->profinsi);
+        $provinsi       = $this->fill($this->provinsi);
         $kabupaten_kota = $this->fill($this->kabupaten_kota);
         $kecamatan      = $this->fill($this->kecamatan);
         $tanggal        = $this->gender === JenisKelamin::PEREMPUAN ? $this->tanggal + 40 : $this->tanggal;
@@ -135,7 +135,7 @@ final class NIK
         $index = rand(1, 50);
         $index = $this->fill($index, 4);
 
-        return $profinsi . $kabupaten_kota . $kecamatan . $tanggal . $bulan . $tahun . $index;
+        return $provinsi . $kabupaten_kota . $kecamatan . $tanggal . $bulan . $tahun . $index;
     }
 
     public function jenisKelamin(int $gender): self
@@ -148,23 +148,23 @@ final class NIK
         return $this;
     }
 
-    public function profinsi(int $profinsi): self
+    public function provinsi(int $provinsi): self
     {
-        if (!array_key_exists($profinsi, $this->dbs)) {
-            throw new \Exception('Profinsi tidak ditemukan');
+        if (!array_key_exists($provinsi, $this->dbs)) {
+            throw new \Exception('Provinsi tidak ditemukan');
         }
 
-        $this->profinsi       = $profinsi;
+        $this->provinsi       = $provinsi;
         $this->kabupaten_kota = $this->randKabupatenKota();
         $this->kecamatan      = $this->randKecamatan();
 
         return $this;
     }
 
-    public function kabupatenKota(int $profinsi, int $kabKota): self
+    public function kabupatenKota(int $provinsi, int $kabKota): self
     {
-        $this->profinsi($profinsi);
-        if (!array_key_exists($kabKota, $this->dbs[$profinsi])) {
+        $this->provinsi($provinsi);
+        if (!array_key_exists($kabKota, $this->dbs[$provinsi])) {
             throw new \Exception('Kabupaten atau kota tidak ditemukan');
         }
 
@@ -174,11 +174,11 @@ final class NIK
         return $this;
     }
 
-    public function kecamatan(int $profinsi, int $kabKota, int $kecamatan): self
+    public function kecamatan(int $provinsi, int $kabKota, int $kecamatan): self
     {
-        $this->profinsi($profinsi)->kabupatenKota($profinsi, $kabKota);
+        $this->provinsi($provinsi)->kabupatenKota($provinsi, $kabKota);
 
-        if (!array_key_exists($kecamatan, $this->dbs[$profinsi][$kabKota])) {
+        if (!array_key_exists($kecamatan, $this->dbs[$provinsi][$kabKota])) {
             throw new \Exception('Kecamatan tidak ditemukan');
         }
 
